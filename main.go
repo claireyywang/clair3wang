@@ -1,22 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
-	"os"
 )
-
-func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		log.Fatal("$PORT must be set")
-	}
-
-	http.HandleFunc("/", handler) // placeholder front page
-	http.ListenAndServe(port, nil)
-}
 
 // placeholder front page
 func handler(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello, it's me."))
+	fmt.Fprintf(w, "Hello, it's me.")
+}
+
+func main() {
+	http.HandleFunc("/", handler) // placeholder front page
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
