@@ -1,3 +1,3 @@
-module github.com/claireyywang/me.git
+module github.com/claireyywang/my-hobby-site.git
 
 go 1.15

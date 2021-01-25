@@ -1,1 +1,1 @@
-web: me
+web: my-hobby-site
