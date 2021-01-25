@@ -18,7 +18,6 @@ func main() {
 	if port == "" {
 		log.Fatal("$PORT is not set.")
 	}
-	portStr := strings.Join([]string{":", port}, "")
 	http.HandleFunc("/", handler) // placeholder front page
-	log.Fatal(http.ListenAndServe(portStr, nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
