@@ -1,1 +1,1 @@
-web: my-hobby-site
+web: main
