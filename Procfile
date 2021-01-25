@@ -1,1 +1,1 @@
-web: main
+web: bin/my-hobby-site
