@@ -4,11 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>{{template "title"}}</title>
+    <link rel="icon" href="img/sleeping_cat_icon.png" type="image/png"/>
 </head>
 <body>
-    <h1>Work Demos</h1>
+    <!-- heading across all pages -->
+    <header>
+        <img id="logo_top_bar" src="img/sleeping_cat_icon.png">
+        <h1>Claire Wang</h1>
+        <p>To all the coffee and late nights.</p>
+    </header>
+    <!-- nav bar across all pages -->
+    <ul>
+        <li>Eat</li>
+        <li>Sleep</li>
+        <li>Code</li>
+        <li>And the boring stuff</li>
+    </ul>
+    <!-- main content -->
     {{template "body"}}
-    <footer>2021 clairewang. All rights reserved.</footer>
+    <!-- side bar differs by pages -->
+    <!-- footer with fine prints across all page -->
+    <footer>
+        <p>&copy; Claire Wang 2019-2021</p>
+    </footer>
 </body>
 </html>
 {{end}}
