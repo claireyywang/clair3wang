@@ -2,6 +2,7 @@ package main
 
 import (
 	// "html/template"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -26,7 +27,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 // showCode Code page handler
 // url "/code"
 func showCode(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display Code section ..."))
+	// display a specific code project based on url query
+	name := r.URL.Query().Get("project_name")
+	if name != "" {
+		fmt.Fprintf(w, "Display the chosen code project with name %s", name)
+	} else {
+		w.Write([]byte("Displaying all code projects..."))
+	}
 }
 
 // showEat Eat page handler
