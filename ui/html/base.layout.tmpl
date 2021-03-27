@@ -1,0 +1,34 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <title>{{template "title" .}} - Claire Wang</title>
+    <link rel="icon" href="../img/sleeping_cat_icon.png" type="image/png"/>
+</head>
+<body>
+    <!-- heading across all pages -->
+    <header>
+        <img id="logo_top_bar" src="../img/sleeping_cat_icon.png">
+        <h1><a href='/'>Claire Wang</a></h1>
+        <p>To all the coffee and late nights.</p>
+    </header>
+    <!-- nav bar across all pages -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/eat">Eat</a>
+        <a href="/sleep">Sleep</a>
+        <a href="/code">Code</a>
+    </nav>
+    <!-- main content -->
+    <section>
+        {{template "body" .}}
+    </section>
+    <!-- optional side bar -->
+    {{block "sidebar" .}}
+    {{end}}
+    <!-- footer with fine prints across all page -->
+    {{template "footer" .}}
+</body>
+</html>
+{{end}}
