@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>{{template "title" .}} - Claire Wang</title>
-    <link rel="icon" href="../img/sleeping_cat_icon.png" type="image/png"/>
+    <!-- Link to the CSS stylesheet and favicon -->
+    <link rel='stylesheet' href='/static/css/main.css'>
+    <link rel='shortcut icon' href='/static/img/sleeping_cat_white.png' type='image/png'>
+    <!-- Also link to some fonts hosted by Google -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
 </head>
 <body>
     <!-- heading across all pages -->
     <header>
-        <img id="logo_top_bar" src="../img/sleeping_cat_icon.png">
         <h1><a href='/'>Claire Wang</a></h1>
         <p>To all the coffee and late nights.</p>
     </header>
@@ -29,6 +32,8 @@
     {{end}}
     <!-- footer with fine prints across all page -->
     {{template "footer" .}}
+    <!-- And include the JavaScript file -->
+    <script src="/static/js/main.js" type="text/javascript"></script>
 </body>
 </html>
 {{end}}

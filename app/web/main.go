@@ -18,6 +18,11 @@ func main() {
 	mux.HandleFunc("/eat", showEat)
 	mux.HandleFunc("/sleep", showSleep)
 
+	// create a file serve which serves files out of ./ui/static dir
+	// path given to http.Dir is relative to project root
+	fileServer := http.FileServer(http.Dir("./ui/static/"))
+	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+
 	// set dynamic port number for heroku deployment
 	port := os.Getenv("PORT")
 	if port == "" {
