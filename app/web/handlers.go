@@ -45,23 +45,36 @@ func home(w http.ResponseWriter, r *http.Request) {
 // showCode Code page handler
 // url "/code"
 func showCode(w http.ResponseWriter, r *http.Request) {
-	// display a specific code project based on url query
-	name := r.URL.Query().Get("project_name")
-	if name != "" {
-		fmt.Fprintf(w, "Display the chosen code project with name %s", name)
-	} else {
-		w.Write([]byte("Displaying all code projects..."))
+	// // display a specific code project based on url query
+	// name := r.URL.Query().Get("project_name")
+	// if name != "" {
+	// 	fmt.Fprintf(w, "Display the chosen code project with name %s", name)
+	// } else {
+	// 	w.Write([]byte("Displaying all code projects..."))
+	// }
+	files := []string{
+		"./ui/html/code.page.tmpl",
+		"./ui/html/base.layout.tmpl",
+		"./ui/html/footer.partial.tmpl",
 	}
 }
 
 // showEat Eat page handler
 // url "/eat"
 func showEat(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display Eat section ..."))
+	files := []string{
+		"./ui/html/eat.page.tmpl",
+		"./ui/html/base.layout.tmpl",
+		"./ui/html/footer.partial.tmpl",
+	}
 }
 
 // showSleep Sleep page handler
 // url "/sleep"
 func showSleep(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Display Sleep section ..."))
+	files := []string{
+		"./ui/html/sleep.page.tmpl",
+		"./ui/html/base.layout.tmpl",
+		"./ui/html/footer.partial.tmpl",
+	}
 }
