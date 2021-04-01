@@ -1,14 +1,17 @@
 package main
 
 import (
-	// "html/template"
+	"flag"
 	"log"
 	"net/http"
 	"os"
-	// "path/filepath"
 )
 
 func main() {
+	// leveled logging
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	errorLog := log.New(os.Stderr, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
 	// mux treats "/" like catch-all "/foo" also shows home()
 	// http.HandleFunc() uses DefaultServeMux, which is a global variable
 	// use locally scoped mux for security
@@ -24,12 +27,20 @@ func main() {
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
 	// set dynamic port number for heroku deployment
-	port := os.Getenv("PORT")
+	port := ":"+os.Getenv("PORT")
 	if port == "" {
 		log.Fatal("$PORT is not set.")
 	}
 
-	log.Println("Starting server on :"+port)
-	err := http.ListenAndServe(":"+port, mux)
-	log.Fatal(err)
+	// initiate a new http.Server struct to use errorlog
+	addr := flag.String("addr", port, "HTTP network address")
+	srv := &http.Server{
+		Addr: *addr,
+		ErrorLog: errorLog, 
+		Handler: mux,
+	}
+
+	infoLog.Printf("Starting server on :"+port)
+	err := srv.ListenAndServe()
+	errorLog.Fatal(err)
 }
