@@ -9,8 +9,8 @@ func (app *application) routes() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", app.home)
 	mux.HandleFunc("/code", app.showCode)
-	mux.HandleFunc("/eat", showEat)
-	mux.HandleFunc("/sleep", showSleep)
+	mux.HandleFunc("/eat", app.showEat)
+	mux.HandleFunc("/sleep", app.showSleep)
 
 	// create a file serve which serves files out of ./ui/static dir
 	// path given to http.Dir is relative to project root

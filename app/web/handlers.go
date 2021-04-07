@@ -1,24 +1,17 @@
 package main 
 
 import (
-	"fmt"
 	"net/http"
 	"html/template"
 )
 
-// home Home page handler
-// url "/"
-func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		app.notFound(w)
-		return
-	}
-
+// createPage create page with templates
+func (app *application) createPage(w http.ResponseWriter, fileName string) {
 	// create a slice of template files
 	// file path either needs to be relative to current work dir
 	// or an abosolute path 
 	files := []string{
-		"./ui/html/home.page.tmpl",
+		fileName,
 		"./ui/html/base.layout.tmpl",
 		"./ui/html/footer.partial.tmpl",
 	}
@@ -30,50 +23,38 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
-	// then execute the template set
-	// last param represent any dynamic data we want to 
-	// pass in, which is nil for now
 	err = ts.Execute(w, nil)
 	if err != nil {
 		app.serverError(w, err)
 	}
 }
 
+// home Home page handler
+// url "/"
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		app.notFound(w)
+		return
+	}
+
+	// create and execute the templated page
+	app.createPage(w, "./ui/html/home.page.tmpl")
+}
+
 // showCode Code page handler
 // url "/code"
 func (app *application) showCode(w http.ResponseWriter, r *http.Request) {
-	// display a specific code project based on url query
-	name := r.URL.Query().Get("project_name")
-	if name != "" {
-		fmt.Fprintf(w, "Display the chosen code project with name %s", name)
-	} else {
-		w.Write([]byte("Displaying all code projects..."))
-	}
-	// files := []string{
-	// 	"./ui/html/code.page.tmpl",
-	// 	"./ui/html/base.layout.tmpl",
-	// 	"./ui/html/footer.partial.tmpl",
-	// }
+	app.createPage(w, "./ui/html/code.page.tmpl")
 }
 
 // showEat Eat page handler
 // url "/eat"
-func showEat(w http.ResponseWriter, r *http.Request) {
-	// files := []string{
-	// 	"./ui/html/eat.page.tmpl",
-	// 	"./ui/html/base.layout.tmpl",
-	// 	"./ui/html/footer.partial.tmpl",
-	// }
-	w.Write([]byte("Displaying eat section..."))
+func (app *application) showEat(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/eat.page.tmpl")
 }
 
 // showSleep Sleep page handler
 // url "/sleep"
-func showSleep(w http.ResponseWriter, r *http.Request) {
-	// files := []string{
-	// 	"./ui/html/sleep.page.tmpl",
-	// 	"./ui/html/base.layout.tmpl",
-	// 	"./ui/html/footer.partial.tmpl",
-	// }
-	w.Write([]byte("Displaying sleep section..."))
+func (app *application) showSleep(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/sleep.page.tmpl")
 }
