@@ -4,14 +4,13 @@ import (
 	"fmt"
 	"net/http"
 	"html/template"
-	"log"
 )
 
 // home Home page handler
 // url "/"
-func home(w http.ResponseWriter, r *http.Request) {
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+		app.notFound(w)
 		return
 	}
 
@@ -28,8 +27,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	// meaning there is no set number of files in `files`
 	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		log.Println(err.Error())
-		http.Error(w, "Internal Server Error", 500)
+		app.serverError(w, err)
 		return
 	}
 	// then execute the template set
@@ -37,14 +35,13 @@ func home(w http.ResponseWriter, r *http.Request) {
 	// pass in, which is nil for now
 	err = ts.Execute(w, nil)
 	if err != nil {
-		log.Println(err.Error())
-		http.Error(w, "Internal Server Error", 500)
+		app.serverError(w, err)
 	}
 }
 
 // showCode Code page handler
 // url "/code"
-func showCode(w http.ResponseWriter, r *http.Request) {
+func (app *application) showCode(w http.ResponseWriter, r *http.Request) {
 	// display a specific code project based on url query
 	name := r.URL.Query().Get("project_name")
 	if name != "" {
