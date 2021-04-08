@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"log"
 	"net/http"
@@ -33,6 +34,21 @@ func main() {
 		log.Fatal("$PORT is not set.")
 	}
 
+	// initiate a config struct to hold non-default settings
+	tlsConfig := &tls.Config{
+		PreferServerCipherSuites: true,
+		// restrict to strong modern cipher suites
+		CipherSuites: []uint16{
+			tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+			tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
+			tls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,
+			tls.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,
+			tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+			tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+		},
+		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+	}
+
 	// initiate a new http.Server struct to use errorlog
 	addr := flag.String("addr", port, "HTTP network address")
 	flag.Parse()
@@ -40,9 +56,10 @@ func main() {
 		Addr: *addr,
 		ErrorLog: errorLog, 
 		Handler: app.routes(),
+		TLSConfig: tlsConfig,
 	}
 
 	infoLog.Printf("Starting server on %s", *addr)
-	err := srv.ListenAndServe()
+	err := srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	errorLog.Fatal(err)
 }
