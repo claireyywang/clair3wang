@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 // application Struct to hold the app dependencies
@@ -40,6 +41,9 @@ func main() {
 		Addr: *addr,
 		ErrorLog: errorLog, 
 		Handler: app.routes(),
+		IdleTimeout: time.Minute,
+		ReadTimeout: 5 * time.Second,
+		WriteTimeout: 10 * time.Second,
 	}
 
 	infoLog.Printf("Starting server on %s", *addr)
