@@ -31,9 +31,10 @@ section {
 h1 a {
     font-size: 36px;
     font-weight: bold;
-    background-image: url("/static/img/sleeping_cat_white_logo.png");
+    background-image: url("/static/img/rat.svg");
     background-repeat: no-repeat;
     background-position: 0px 0px;
+    background-size: 40px;
     height: 36px;
     padding-left: 50px;
     position: relative;
@@ -284,7 +285,6 @@ table {
     border: 1px solid #E4E5E7;
     border-collapse: collapse;
     width: 100%;
-}
 
 td, th {
     text-align: left;
