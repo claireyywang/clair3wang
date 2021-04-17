@@ -50,6 +50,10 @@ section {
     flex-grow: 1;
 }
 
+li a {
+    text-decoration: none;
+}
+
 footer {
     display: flex;
     flex-direction: row;

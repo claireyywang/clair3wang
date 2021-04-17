@@ -8,9 +8,9 @@ func (app *application) routes() *http.ServeMux {
 	// use locally scoped mux for security
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", app.home)
-	mux.HandleFunc("/code", app.showCode)
-	mux.HandleFunc("/eat", app.showEat)
-	mux.HandleFunc("/sleep", app.showSleep)
+	mux.HandleFunc("/work", app.showWork)
+	mux.HandleFunc("/life", app.showLife)
+	mux.HandleFunc("/contact", app.showContact)
 
 	// create a file serve which serves files out of ./ui/static dir
 	// path given to http.Dir is relative to project root

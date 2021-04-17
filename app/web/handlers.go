@@ -43,18 +43,18 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 // showCode Code page handler
 // url "/code"
-func (app *application) showCode(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/code.page.tmpl")
+func (app *application) showWork(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/work.page.tmpl")
 }
 
 // showEat Eat page handler
 // url "/eat"
-func (app *application) showEat(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/eat.page.tmpl")
+func (app *application) showLife(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/life.page.tmpl")
 }
 
 // showSleep Sleep page handler
 // url "/sleep"
-func (app *application) showSleep(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/sleep.page.tmpl")
+func (app *application) showContact(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/contact.page.tmpl")
 }
