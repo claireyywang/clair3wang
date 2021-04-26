@@ -9,6 +9,18 @@ func (app *application) routes() *http.ServeMux {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", app.home)
 	mux.HandleFunc("/work", app.showWork)
+	mux.HandleFunc("/work/openrobotics", app.renderMarkdown(
+		"./content/markdown/openrobotics.md",
+		"./ui/html/work.page.tmpl.html"))
+	mux.HandleFunc("/work/qualcomm", app.renderMarkdown(
+		"./content/markdown/qualcomm.md",
+		"./ui/html/work.page.tmpl.html"))
+	mux.HandleFunc("/work/upenn", app.renderMarkdown(
+		"./content/markdown/upenn.md",
+		"./ui/html/work.page.tmpl.html"))
+	mux.HandleFunc("/work/brynmawr", app.renderMarkdown(
+		"./content/markdown/brynmawr.md",
+		"./ui/html/work.page.tmpl.html"))
 	mux.HandleFunc("/life", app.showLife)
 	mux.HandleFunc("/contact", app.showContact)
 
