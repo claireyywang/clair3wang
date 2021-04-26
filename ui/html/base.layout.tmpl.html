@@ -33,19 +33,14 @@
         <a href="/life">life</a>
         <a href="/contact">contact</a>
     </nav>
-
-    <!-- sub nav bar across each page -->
     <div class="content">
+        <!-- sub nav bar across each page -->
         {{block "mini-nav" .}}
         {{end}}
         <!-- main content -->
         {{block "body" .}}
         {{end}}
     </div>
-    
-    <!-- optional side bar -->
-    {{block "sidebar" .}}
-    {{end}}
     <!-- footer with fine prints across all page -->
     {{template "footer" .}}
     <!-- And include the JavaScript file -->
