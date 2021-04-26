@@ -1,0 +1,6 @@
+{{template "base" .}}
+{{define "body"}}
+    <div class="markdown">
+        {{.Body | markDown}}
+    </div>
+{{end}}

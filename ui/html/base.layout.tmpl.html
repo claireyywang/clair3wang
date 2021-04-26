@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{template "title" .}} - Claire Wang</title>
     <!-- Link to the CSS stylesheet and favicon -->
     <link rel='stylesheet' href='/static/css/main.css'>
     <link rel='shortcut icon' href='/static/img/me.png' type='image/png'>
@@ -23,21 +22,27 @@
 <body>
     <!-- heading across all pages -->
     <header>
-        <img src="./static/img/me.png">
+        <img src="/static/img/me.png">
         <p><a href='/'>hi, my name is claire wang</a></p>
         <p>to all the coffee and late nights</p>
     </header>
-    <!-- nav bar across all pages -->
+    <!-- main nav bar across all pages -->
     <nav>
         <a href="/">home</a>
         <a href="/work">work</a>
         <a href="/life">life</a>
         <a href="/contact">contact</a>
     </nav>
-    <!-- main content -->
-    <section>
-        {{template "body" .}}
-    </section>
+
+    <!-- sub nav bar across each page -->
+    <div class="content">
+        {{block "mini-nav" .}}
+        {{end}}
+        <!-- main content -->
+        {{block "body" .}}
+        {{end}}
+    </div>
+    
     <!-- optional side bar -->
     {{block "sidebar" .}}
     {{end}}
