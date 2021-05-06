@@ -9,15 +9,15 @@ import (
 )
 
 // createPage create page with templates
-func (app *application) createPage(w http.ResponseWriter, fileName string) {
+func (app *application) createPage(w http.ResponseWriter, fileNames ...string) {
 	// create a slice of template files
 	// file path either needs to be relative to current work dir
 	// or an abosolute path 
-	files := []string{
-		fileName,
-		"./ui/html/base.layout.tmpl.html",
-		"./ui/html/footer.partial.tmpl.html",
-	}
+	files := append(fileNames,
+		[]string{
+			"./ui/html/base.layout.tmpl.html",
+			"./ui/html/footer.partial.tmpl.html",
+		}...)
 	// use template.ParseFiles() to read tmpl files
 	// the slice of template files are passed as a variadic parameter
 	// meaning there is no set number of files in `files`
@@ -83,6 +83,12 @@ func (app *application) showWork(w http.ResponseWriter, r *http.Request) {
 // url "/life"
 func (app *application) showLife(w http.ResponseWriter, r *http.Request) {
 	app.createPage(w, "./ui/html/life.page.tmpl.html")
+}
+
+func (app *application) showArt(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w,
+		[]string{"./ui/html/art.page.tmpl.html",
+		"./ui/html/life.page.tmpl.html"}...)
 }
 
 // showContact Contact page handler
