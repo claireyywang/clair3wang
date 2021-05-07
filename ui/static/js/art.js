@@ -1,12 +1,18 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.128.0'
 
 const container = document.getElementById("art")
+const width = window.innerWidth * 0.75;
+const height = width / 1.26;
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, 500 / 850 , 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 75, width / height , 0.1, 1000 );
 
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(500, 850);
+renderer.setSize(width, height);
+// resize when window size changes
+window.addEventListener("resize", function() {
+    renderer.setSize(width, height);
+});
 container.appendChild( renderer.domElement );
 
 const geometry = new THREE.BoxGeometry();
