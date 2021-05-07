@@ -13,7 +13,8 @@ func (app *application) createPage(w http.ResponseWriter, fileNames ...string) {
 	// create a slice of template files
 	// file path either needs to be relative to current work dir
 	// or an abosolute path 
-	files := append(fileNames,
+	files := append(
+		fileNames,
 		[]string{
 			"./ui/html/base.layout.tmpl.html",
 			"./ui/html/footer.partial.tmpl.html",
