@@ -11,18 +11,19 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("/work", app.showWork)
 	mux.HandleFunc("/work/openrobotics", app.renderMarkdown(
 		"./content/markdown/openrobotics.md",
-		"./ui/html/work.page.tmpl.html"))
+		"./ui/html/work.page.html"))
 	mux.HandleFunc("/work/qualcomm", app.renderMarkdown(
 		"./content/markdown/qualcomm.md",
-		"./ui/html/work.page.tmpl.html"))
+		"./ui/html/work.page.html"))
 	mux.HandleFunc("/work/upenn", app.renderMarkdown(
 		"./content/markdown/upenn.md",
-		"./ui/html/work.page.tmpl.html"))
+		"./ui/html/work.page.html"))
 	mux.HandleFunc("/work/brynmawr", app.renderMarkdown(
 		"./content/markdown/brynmawr.md",
-		"./ui/html/work.page.tmpl.html"))
-	mux.HandleFunc("/life", app.showLife)
-	mux.HandleFunc("/life/art", app.showArt)
+		"./ui/html/work.page.html"))
+	mux.HandleFunc("/projects", app.showProjects)
+	mux.HandleFunc("/projects/ball", app.renderArt("./ui/html/ball.page.html"))
+	mux.HandleFunc("/projects/cubes", app.renderArt("./ui/html/cubes.page.html"))
 	mux.HandleFunc("/contact", app.showContact)
 
 	// create a file serve which serves files out of ./ui/static dir

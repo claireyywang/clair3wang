@@ -16,8 +16,8 @@ func (app *application) createPage(w http.ResponseWriter, fileNames ...string) {
 	files := append(
 		fileNames,
 		[]string{
-			"./ui/html/base.layout.tmpl.html",
-			"./ui/html/footer.partial.tmpl.html",
+			"./ui/html/base.layout.html",
+			"./ui/html/footer.partial.html",
 		}...)
 	// use template.ParseFiles() to read tmpl files
 	// the slice of template files are passed as a variadic parameter
@@ -44,10 +44,10 @@ func markdownHelper(body []byte) template.HTML {
 func (app *application) renderMarkdown(fileName, tmplName string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		files := []string{
-			"./ui/html/markdown.page.tmpl.html",
+			"./ui/html/markdown.page.html",
 			tmplName,
-			"./ui/html/base.layout.tmpl.html",
-			"./ui/html/footer.partial.tmpl.html",
+			"./ui/html/base.layout.html",
+			"./ui/html/footer.partial.html",
 		}
 		name := path.Base((files[0]))
 	
@@ -71,29 +71,31 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// create and execute the templated page
-	app.createPage(w, "./ui/html/home.page.tmpl.html")
+	app.createPage(w, "./ui/html/home.page.html")
 }
 
 // showWork Work page handler
 // url "/work"
 func (app *application) showWork(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/work.page.tmpl.html")
+	app.createPage(w, "./ui/html/work.page.html")
 }
 
 // showLife Life page handler
 // url "/life"
-func (app *application) showLife(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/life.page.tmpl.html")
+func (app *application) showProjects(w http.ResponseWriter, r *http.Request) {
+	app.createPage(w, "./ui/html/projects.page.html")
 }
 
-func (app *application) showArt(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w,
-		[]string{"./ui/html/art.page.tmpl.html",
-		"./ui/html/life.page.tmpl.html"}...)
+func (app *application) renderArt(fileName string) http.HandlerFunc{
+	return func(w http.ResponseWriter, r *http.Request)  {
+		app.createPage(w,
+			[]string{fileName,
+			"./ui/html/projects.page.html"}...)
+	}
 }
 
 // showContact Contact page handler
 // url "/contact"
 func (app *application) showContact(w http.ResponseWriter, r *http.Request) {
-	app.createPage(w, "./ui/html/contact.page.tmpl.html")
+	app.createPage(w, "./ui/html/contact.page.html")
 }

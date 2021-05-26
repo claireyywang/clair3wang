@@ -24,18 +24,18 @@
     <header>
         <img src="/static/img/me.png">
         <p><a href='/'>hi, my name is claire wang</a></p>
-        <p>to all the coffee and late nights</p>
+        <p>to all the coffee and early mornings</p>
     </header>
     <!-- main nav bar across all pages -->
     <nav>
         <a href="/">home</a>
         <a href="/work">work</a>
-        <a href="/life">life</a>
+        <a href="/projects">projects</a>
         <a href="/contact">contact</a>
     </nav>
     <div class="content">
         <!-- sub nav bar across each page -->
-        {{block "mini-nav" .}}
+        {{block "sub-nav" .}}
         {{end}}
         <!-- main content -->
         {{block "body" .}}
