@@ -29,7 +29,7 @@ container.appendChild( renderer.domElement );
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // create ball
-const material = new THREE.MeshLambertMaterial({color: 0x80FC66});
+const material = new THREE.MeshLambertMaterial({color: 0x12ccab});
 material.color.setRGB(material.color.r * 0.4, material.color.g * 0.4, material.color.b * 0.4);
 const ball = new THREE.Mesh(new THREE.SphereGeometry(150, 64, 32), material)
 
