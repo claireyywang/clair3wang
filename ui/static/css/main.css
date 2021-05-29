@@ -59,3 +59,9 @@ footer {
     flex-direction: row;
     align-self: center;
 }
+
+canvas {
+    width: 75%;
+    height: 75%;
+    display: block;
+}
