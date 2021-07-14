@@ -24,6 +24,7 @@ func (app *application) routes() *http.ServeMux {
 	mux.HandleFunc("/projects", app.showProjects)
 	mux.HandleFunc("/projects/shapes", app.renderArt("./ui/html/shapes.page.html"))
 	mux.HandleFunc("/projects/cubes", app.renderArt("./ui/html/cubes.page.html"))
+	mux.HandleFunc("/projects/sun", app.renderArt("./ui/html/sun.page.html"))
 	mux.HandleFunc("/contact", app.showContact)
 
 	// create a file serve which serves files out of ./ui/static dir

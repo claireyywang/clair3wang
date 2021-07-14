@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.128.0'
 
 function main() {
     // canvas size
-    const container = document.getElementById("art")
+    const canvas = document.getElementById("art")
     const width = window.innerWidth * 0.75;
     const height = width / 1.26;
 
@@ -13,7 +13,7 @@ function main() {
     window.addEventListener("resize", function() {
         renderer.setSize(width, height);
     });
-    container.appendChild( renderer.domElement );
+    canvas.appendChild( renderer.domElement );
 
     // scene 
     const scene = new THREE.Scene();
