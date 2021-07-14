@@ -22,7 +22,7 @@ func (app *application) routes() *http.ServeMux {
 		"./content/markdown/brynmawr.md",
 		"./ui/html/work.page.html"))
 	mux.HandleFunc("/projects", app.showProjects)
-	mux.HandleFunc("/projects/ball", app.renderArt("./ui/html/ball.page.html"))
+	mux.HandleFunc("/projects/shapes", app.renderArt("./ui/html/shapes.page.html"))
 	mux.HandleFunc("/projects/cubes", app.renderArt("./ui/html/cubes.page.html"))
 	mux.HandleFunc("/contact", app.showContact)
 
